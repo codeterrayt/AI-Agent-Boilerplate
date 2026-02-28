@@ -1,12 +1,13 @@
 {
 	"scripts": {
-		"dev": "node --env-file=.env index.js"
+		"dev": "node --env-file=.env server.js"
 	},
 	"type": "module",
 	"dependencies": {
 		"@openai/agents": "^0.5.2",
 		"express": "^5.2.1",
 		"openai": "^6.25.0",
+		"socket.io": "^4.8.3",
 		"zod": "^4.3.6"
 	},
 	"devDependencies": {

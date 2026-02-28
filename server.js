@@ -1,18 +1,32 @@
 import express from 'express';
-import { run } from './index.js';
+import routes from './src/routes/routes.routes.js';
+import { createServer } from 'node:http';
+import { Server} from 'socket.io'
 
-const app = express();
 const port = process.env.PORT || 3000;
 
-app.get('/', async (req, res) => {
-    res.send('Hello World!');
+const app = express();
+const httpServer = createServer(app);
+
+const io = new Server(httpServer, {
+    cors: { origin: "*" }
 });
 
-app.get('/run', async (req, res) => {
-    const result = await run(req.query.query);
-    return res.send(result);
+io.on("connection", (socket)=>{
+    console.log("a user connected id: ", socket.id);
+    socket.on("disconnect", ()=>{
+        console.log("user disconnected");
+    })
+})
+
+app.use((req,res,next)=>{
+    req.io = io;
+    next();
 });
 
-app.listen(port, () => {
+app.use(express.json());
+app.use(routes);
+
+httpServer.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });
