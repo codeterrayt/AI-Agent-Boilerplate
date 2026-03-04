@@ -1,4 +1,6 @@
 # AI Agent Boilerplate (API + WebSockets + Tool Calling)
+<img width="1408" height="768" alt="Gemini_Generated_Image_qw6mvmqw6mvmqw6m" src="https://github.com/user-attachments/assets/19ef265c-cffc-44b1-9274-799ea97e37af" />
+
 
 A minimal, **production-shaped** AI Agent starter built with:
 
